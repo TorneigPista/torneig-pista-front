@@ -1,4 +1,8 @@
 
-export default function navbar() {
-    return (<div></div>)
+export default function Navbar() {
+    return (
+      <div>
+        
+      </div>
+    )
 }
