@@ -16,6 +16,7 @@ export function CategoryFilter({ active, onChange }) {
                 ? 'bg-green-400 text-black'
                 : 'border-green-400 text-green-400 hover:bg-green-600 hover:text-black'
             }`}
+            style={{ backgroundColor: !isActive ? '#191B24'  : '' }}
           >
             {cat}
           </button>
