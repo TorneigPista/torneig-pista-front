@@ -49,7 +49,7 @@ export default function TeamsSection() {
       : mockTeams.filter((t) => t.category === activeCategory);
   return (
     <section className="pt-5 text-start">
-      <h1 className=" text-4xl">
+      <h1 className=" text-4xl text-green-400">
         Equips Participants
       </h1>
       <div className="pt-4  ">
