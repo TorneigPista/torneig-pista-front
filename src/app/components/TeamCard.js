@@ -9,8 +9,8 @@ export function TeamCard({ name, captain, imgUrl, borderColor = 'border-green-40
             aria-hidden 
             source={{uri: {imgUrl}}}
             alt={name} 
-            width={200} 
-            height={200} 
+            // width={200} 
+            // height={200} 
             className="object-cover w-full h-full"
           />
         ) : 

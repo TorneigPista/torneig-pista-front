@@ -1,6 +1,4 @@
-export function CategoryFilter({ active, onChange }) {
-  const categories = ['Totes les Categories', 'Categoria A', 'Categoria B', 'Juvenil'];
-
+export function CategoryFilter({ categories, active, onChange }) {
   return (
     <div className="flex gap-2 flex-wrap mb-6">
       {categories.map((cat, index) => {
