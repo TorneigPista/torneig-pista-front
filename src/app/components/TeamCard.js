@@ -7,10 +7,11 @@ export function TeamCard({ name, captain, imgUrl, borderColor = 'border-green-40
         {imgUrl ? (
           <Image 
             aria-hidden 
+            src='/images/hero-image.svg'
             source={{uri: {imgUrl}}}
             alt={name} 
-            // width={200} 
-            // height={200} 
+            width={200} 
+            height={200} 
             className="object-cover w-full h-full"
           />
         ) : 

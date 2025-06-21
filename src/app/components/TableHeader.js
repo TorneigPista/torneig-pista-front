@@ -1,14 +1,19 @@
-export default function TableHeader() {
+export default function TableHeader({headers, headerBackgroundColor}) {
+  
   return (
-    <thead className="bg-green-400 text-black text-sm font-semibold">
+    <thead className={`${headerBackgroundColor} text-black text-sm font-semibold`}>
       <tr>
-        <th className="px-4 py-2">Fecha</th>
-        <th className="px-4 py-2">Hora</th>
-        <th className="px-4 py-2">Equipo A</th>
-        <th className="px-4 py-2">VS</th>
-        <th className="px-4 py-2">Equipo B</th>
-        <th className="px-4 py-2">Cancha</th>
+        {
+          headers.map((header,index) => {
+            const title = typeof header == 'string' ? header : header.title;
+            const styles = typeof header !== 'string' ? header.style : '';
+            return (
+            <th key={index} className={`px-4 py-2 ${styles}`}>{title}</th>
+          )
+          })
+        }
       </tr>
     </thead>
   );
 }
+// bg-green-400

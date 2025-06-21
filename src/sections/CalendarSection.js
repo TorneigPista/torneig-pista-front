@@ -2,7 +2,8 @@
 import { useState } from 'react';
 import { CategoryFilter } from "@/app/components/CategoryFilter";
 import TableHeader from '@/app/components/TableHeader';
-import MatchRow from '@/app/components/MatchRow';
+import DynamicTable from '@/app/components/DynamicTable';
+import Image from 'next/image';
 
 export default function CalendarSection() {
   const categories = ['Todas', 'Cat. A', 'Cat. B', 'Juvenil'];
@@ -29,10 +30,13 @@ export default function CalendarSection() {
       category: 'Cat. B',
     },
   ];
+  
   const filteredMatches =
     selectedCategory === 'Todas'
       ? matches
       : matches.filter((m) => m.category === selectedCategory);
+
+  const headers = ['Fecha', 'Hora', 'Equipo A', 'VS', 'Equipo B', 'Cancha'];
   return (
     <section className="text-white mt-16">
       <div className='flex justify-between'>
@@ -43,16 +47,40 @@ export default function CalendarSection() {
           onChange={setSelectedCategory}
         />
       </div>
-      <div className="rounded-lg border border-green-300 overflow-auto mt-3">
-        <table className="w-full border-collapse">
-          <TableHeader />
-          <tbody>
-            {filteredMatches.map((match, i) => (
-              <MatchRow key={i} match={match} />
-            ))}
-          </tbody>
-        </table>
-      </div>
+       <DynamicTable headers={headers}>
+        {filteredMatches.map((match,i) =>(
+          <tr key={i} className='border-t border-green-300 text-sm'>
+            <td className="px-4 py-2">{match.date}</td>
+            <td className="px-4 py-2">{match.time}</td>
+            <td className="px-4 py-2 flex items-center justify-center gap-2">
+            <Image 
+              aria-hidden 
+              source={{uri: `${match.teamAImg}`}}
+              alt={`${match.teamA} logo`}
+              src='/images/hero-image.svg'
+              width={200} 
+              height={200} 
+              className="w-6 h-6 rounded-full"
+            />
+            {match.teamA}
+            </td>
+            <td className="px-4 py-2 text-green-400 font-bold text-sm text-center">VS</td>
+            <td className="px-4 py-2 flex items-center justify-center gap-2">
+              <Image 
+                aria-hidden 
+                src='/images/hero-image.svg'
+                source={{uri: `${match.teamBImg}`}}
+                alt={`${match.teamA} logo`}
+                width={200} 
+                height={200} 
+                className="w-6 h-6 rounded-full"
+              />
+              {match.teamB}
+            </td>
+            <td className="px-4 py-2">{match.field}</td>
+          </tr>
+        ))}
+      </DynamicTable>
     </section>
   )
 }
