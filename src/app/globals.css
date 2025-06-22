@@ -36,6 +36,6 @@ body {
 }
 .body-container {
   width: 100%; /* esto hace que <main> se estire al ancho total */
-  max-width: 65em; /* opcional, si quieres limitar */
+  max-width: 70em; /* opcional, si quieres limitar */
   margin: 1em;
 }

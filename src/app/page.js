@@ -1,8 +1,8 @@
-import HeroSection from "@/sections/Hero";
+import HeroSection from "@/sections/Home/Hero";
 import Navbar from "./components/navbar";
-import TeamsSection from "@/sections/Teams";
-import CalendarSection from "@/sections/CalendarSection";
-import CurrentClassification from "@/sections/CurrentClassification";
+import TeamsSection from "@/sections/Home/Teams";
+import CalendarSection from "@/sections/Home/CalendarSection";
+import CurrentClassification from "@/sections/Home/CurrentClassification";
 export default function Home() {
   return (
    <>

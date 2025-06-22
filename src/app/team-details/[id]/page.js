@@ -1,10 +1,27 @@
+import Details from "@/sections/Details/Details";
+import Hero from "@/sections/Details/Hero";
+import TeamTemplate from "@/sections/Details/TeamTemplate";
 
 export default function TeamsDetails({ params }) {
-    const { id } = params;
+    // const { id } = params;
+    const team = {
+      id:4,
+      name: 'Quantum FC',
+      captain: 'Paula S.',
+      imgUrl: 'https://randomuser.me/api/portraits/women/50.jpg',
+      category: 'Juvenil',
+      borderColor: 'border-blue-400',
+      textColor: 'text-blue-400',
+    };
     return (
-        <main className="p-6 text-white">
-        <h1 className="text-2xl font-bold">Detalles del equipo</h1>
-        <p>ID del equipo: {id}</p>
-        </main>
+      <>
+        <div className="body-main">
+          <main className="body-container">
+            <Hero/>
+            <Details team={team}/>
+            <TeamTemplate/>
+          </main>
+        </div>
+      </>
   ); 
 }
