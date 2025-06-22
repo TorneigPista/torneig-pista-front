@@ -7,6 +7,7 @@ export default function TeamsSection() {
   const [activeCategory, setActiveCategory] = useState('Totes les Categories');
   const mockTeams = [
     {
+      id : 1,
       name: 'Futbolines',
       captain: 'Lucas G.',
       imgUrl: 'https://randomuser.me/api/portraits/men/32.jpg',
@@ -15,6 +16,7 @@ export default function TeamsSection() {
       textColor: 'text-green-400',
     },
     {
+      id: 2,
       name: 'TechStars',
       captain: 'Sofía M.',
       imgUrl: '', // Sin imagen
@@ -23,6 +25,7 @@ export default function TeamsSection() {
       textColor: 'text-green-400',
     },
     {
+      id: 3,
       name: 'Neon United',
       captain: 'Andrés T.',
       imgUrl: 'https://randomuser.me/api/portraits/men/45.jpg',
@@ -31,6 +34,7 @@ export default function TeamsSection() {
       textColor: 'text-green-400',
     },
     {
+      id:4,
       name: 'Quantum FC',
       captain: 'Paula S.',
       imgUrl: 'https://randomuser.me/api/portraits/women/50.jpg',
@@ -55,7 +59,7 @@ export default function TeamsSection() {
         <CategoryFilter categories={categories} active={activeCategory} onChange={setActiveCategory} />
         <div className="flex flex-wrap gap-6 justify-start">
           {filteredTeams.map((team, index) => (
-            <TeamCard key={index} {...team} />
+            <TeamCard key={index} team={team} />
           ))}
         </div>
       </div>
