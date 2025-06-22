@@ -3,7 +3,6 @@ import Navbar from "./components/navbar";
 import TeamsSection from "@/sections/Teams";
 import CalendarSection from "@/sections/CalendarSection";
 import CurrentClassification from "@/sections/CurrentClassification";
-import Footer from "./components/Footer";
 export default function Home() {
   return (
    <>
@@ -16,7 +15,6 @@ export default function Home() {
         <CurrentClassification/>
       </main>
     </div>
-     <Footer/>
    </>
   );
 }
