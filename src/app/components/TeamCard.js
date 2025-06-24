@@ -6,15 +6,17 @@ export function TeamCard({ team, borderColor = 'border-green-400', textColor = '
   return (
     <Link href={`/team-details/${team.id}`}>
       <div
-        className={`cursor-pointer border ${borderColor} rounded-lg p-4 w-48 text-center`}
+        className={`
+          cursor-pointer border ${borderColor} rounded-lg p-4 w-48 text-center
+          transform transition duration-300 hover:scale-105 hover:shadow-lg
+        `}
         style={{ backgroundColor: '#191B24' }}
       >
         <div className={`w-24 h-24 mx-auto rounded-full border-4 ${borderColor} overflow-hidden`}>
           {team.imgUrl ? (
             <Image
               aria-hidden
-              src='/images/hero-image.svg'
-              source={{uri: `${team.imgUrl}`}}
+              src="/images/hero-image.svg"
               alt={team.name}
               width={200}
               height={200}
@@ -30,4 +32,3 @@ export function TeamCard({ team, borderColor = 'border-green-400', textColor = '
     </Link>
   );
 }
-

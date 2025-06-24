@@ -17,7 +17,7 @@ export default function CurrentClassification(){
   const filteredMatches =
     selectedCategory === 'Todas'
       ? teams
-      : matches.filter((m) => m.category === selectedCategory);
+      : teams.filter((m) => m.category === selectedCategory);
   const headers = [
     '#',
     {

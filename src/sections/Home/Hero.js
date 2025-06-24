@@ -1,6 +1,7 @@
 import { GiTrophyCup  } from "react-icons/gi";
 import { FaGamepad } from "react-icons/fa6";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HeroSection() {
   return (
@@ -9,24 +10,22 @@ export default function HeroSection() {
         {/* Texto a la izquierda */}
         <div>
           <h1 className="text-4xl md:text-6xl font-bold leading-tight text-start">
-            ¡Bienvenido al inicio del 
-            <span className="text-green-300">Torneo</span>
-            <span> Fútbol </span>
-            <span className="text-blue-300">Tech!</span>
+            Benvingut al 
+            <span className="text-green-300"> Torneig</span>
+            <span> de la </span>
+            <span className="text-blue-300">Pista!</span>
           </h1>
 
           <p className="mt-6 text-lg text-gray-300 text-start">
-            Vive la emoción del fútbol local con una experiencia moderna, energética y divertida. 
-            ¡Forma tu equipo y compite por la gloria!
+            Viu l’emoció del torneig de la pista desde cualsevol lloc, estigues informat en directe a traves de la nostre web,
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
-            <button className="bg-green-400 hover:bg-green-500 text-black font-semibold py-2 px-6 rounded-lg shadow-md transition">
-              Inscribir Equipo
-            </button>
-            <button className="bg-transparent border border-blue-300 hover:bg-blue-300 hover:text-black text-blue-300 font-semibold py-2 px-6 rounded-lg transition">
-              Ver Fechas
-            </button>
+            <Link href="/#calendari">
+              <button className="cursor-pointer bg-transparent border border-blue-300 hover:bg-blue-300 hover:text-black text-blue-300 font-semibold py-2 px-6 rounded-lg transition ">
+                Ver Fechas
+              </button>
+            </Link>
           </div>
 
           <div className="mt-10 flex items-center gap-8 text-sm text-gray-400">
@@ -35,7 +34,7 @@ export default function HeroSection() {
               <span>Premios Increíbles</span>
             </div>
             <div className="flex items-center gap-2">
-              <FaGamepad className="size-7"/>
+              <FaGamepad className="size-7 text-blue-300"/>
               <span>Reglas innovadoras</span>
             </div>
           </div>
