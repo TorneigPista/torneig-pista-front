@@ -32,7 +32,7 @@ export default function CurrentClassification(){
   ];
 
   return (
-    <section className="text-white mt-16">
+    <section id='classificacio' className="text-white mt-16">
         <div className='flex justify-between'>
           <h1 className="text-green-400 text-4xl mb-4">Classificació Actual</h1>
           <CategoryFilter

@@ -38,7 +38,7 @@ export default function CalendarSection() {
 
   const headers = ['Fecha', 'Hora', 'Equipo A', 'VS', 'Equipo B', 'Cancha'];
   return (
-    <section className="text-white mt-16">
+    <section id='calendari' className="text-white mt-16">
       <div className='flex justify-between'>
         <h1 className="text-cyan-300 text-4xl mb-4">Calendari de Partits</h1>
         <CategoryFilter

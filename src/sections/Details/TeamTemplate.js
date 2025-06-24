@@ -53,7 +53,7 @@ export default function TeamTemplate() {
   return (
       <>
         <h1 className="text-cyan-300 text-4xl mb-4 text-start mt-9">Plantilla del Equipo</h1>
-        <DynamicTable headers={headers}>
+        <DynamicTable headers={headers} borderColor='border-blue-400' headerBackgroundColor='bg-blue-400'>
           {players.map((player,i) => (
             <tr key={i} className='border-t border-green-300 text-sm'>
               <td className="px-4 py-2 flex  gap-2 text-start">

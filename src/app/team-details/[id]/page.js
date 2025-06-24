@@ -1,5 +1,7 @@
+import Navbar from "@/app/components/navbar";
 import Details from "@/sections/Details/Details";
 import Hero from "@/sections/Details/Hero";
+import LastMatches from "@/sections/Details/LastMatches";
 import TeamTemplate from "@/sections/Details/TeamTemplate";
 
 export default function TeamsDetails({ params }) {
@@ -15,11 +17,13 @@ export default function TeamsDetails({ params }) {
     };
     return (
       <>
+        <Navbar/>
         <div className="body-main">
           <main className="body-container">
             <Hero/>
             <Details team={team}/>
             <TeamTemplate/>
+            <LastMatches/>
           </main>
         </div>
       </>
