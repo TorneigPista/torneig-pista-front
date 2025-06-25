@@ -2,17 +2,17 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-export function TeamCard({ team, borderColor = 'border-green-400', textColor = 'text-green-400' }) {
+export function TeamCard({ team, borderPrimaryColor = 'border-green-400', borderSecondaryColor = 'border-blue-400', textColor = 'text-green-400' }) {
   return (
     <Link href={`/team-details/${team.id}`}>
       <div
         className={`
-          cursor-pointer border ${borderColor} rounded-lg p-4 w-48 text-center
+          cursor-pointer border ${borderPrimaryColor} rounded-lg p-4 w-48 text-center
           transform transition duration-300 hover:scale-105 hover:shadow-lg
         `}
         style={{ backgroundColor: '#191B24' }}
       >
-        <div className={`w-24 h-24 mx-auto rounded-full border-4 ${borderColor} overflow-hidden`}>
+        <div className={`w-24 h-24 mx-auto rounded-full border-4 ${borderSecondaryColor} overflow-hidden`}>
           {team.imagen?.url ? (
             <Image unoptimized
               aria-hidden
@@ -34,7 +34,9 @@ export function TeamCard({ team, borderColor = 'border-green-400', textColor = '
           )}
         </div>
         <h3 className="text-white mt-3 font-semibold">{team.nombre}</h3>
-        <p className={`${textColor} text-sm`}>Capità: {team.captain}</p>
+        {team.captain && (
+          <p className={`${textColor} text-sm`}>Capità: {team.captain}</p>
+        )}
       </div>
     </Link>
   );
