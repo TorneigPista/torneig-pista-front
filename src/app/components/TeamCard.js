@@ -13,20 +13,27 @@ export function TeamCard({ team, borderColor = 'border-green-400', textColor = '
         style={{ backgroundColor: '#191B24' }}
       >
         <div className={`w-24 h-24 mx-auto rounded-full border-4 ${borderColor} overflow-hidden`}>
-          {team.imgUrl ? (
-            <Image
+          {team.imagen?.url ? (
+            <Image unoptimized
               aria-hidden
-              src="/images/hero-image.svg"
+              src={team.imagen.url}
               alt={team.name}
               width={200}
               height={200}
               className="object-cover w-full h-full"
             />
           ) : (
-            <div className="w-full h-full bg-transparent flex items-center justify-center text-3xl" />
+            <Image
+              aria-hidden
+              src="/images/default-team-shield.svg"
+              alt={team.name}
+              width={200}
+              height={200}
+              className="object-cover w-full h-full"
+            />
           )}
         </div>
-        <h3 className="text-white mt-3 font-semibold">{team.name}</h3>
+        <h3 className="text-white mt-3 font-semibold">{team.nombre}</h3>
         <p className={`${textColor} text-sm`}>Capità: {team.captain}</p>
       </div>
     </Link>
