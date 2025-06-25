@@ -4,14 +4,16 @@ export function CategoryFilter({ categories, active, onChange }) {
       {categories.map((cat, index) => {
         const isActive = active === cat.id;
         const baseClass = `px-4 py-1 rounded-full border text-sm font-semibold transition cursor-pointer`;
+        const color = index % 2 === 0
+          ? 'green' : 'blue';
 
         return (
           <button
             key={cat.id}
             onClick={() => onChange(cat.id)}
             className={`${baseClass} ${isActive
-              ? 'bg-green-400 text-black'
-              : 'border-green-400 text-green-400 hover:bg-green-600 hover:text-black'
+              ? `bg-${color}-400 text-black`
+              : `border-${color}-400 text-${color}-400 hover:bg-${color}-600 hover:text-black`
               }`}
             style={{ backgroundColor: !isActive ? '#191B24' : '' }}
           >
