@@ -9,7 +9,8 @@ const IDLE_AFTER = 5000;
 
 export default function TeamsSection() {
   const [activeCategory, setActiveCategory] = useState('all');
-  const [categoriasWithTeams, setCategories] = useState([]);
+  const [categoriasWithTeams, setCategoriesTeams] = useState([]);
+  const [categories, setCategories] = useState([]);
   const scrollRef = useRef(null);
   const rafId = useRef();
   const idleTimer = useRef();
@@ -17,7 +18,16 @@ export default function TeamsSection() {
   useEffect(() => {
     (async () => {
       try {
-        setCategories(await getCategoriesWithTeams());
+        const teamsByCategories = await getCategoriesWithTeams();
+
+        setCategories([
+          { id: 'all', name: 'Totes les Categories' },
+          ...teamsByCategories.map((cat) => ({
+            id: cat.id,
+            name: cat.nombre,
+          })),
+        ]);
+        setCategoriesTeams(teamsByCategories);
       }
       catch (err) {
         console.error('Error al cargar categorías:', err);
@@ -65,14 +75,6 @@ export default function TeamsSection() {
       clearTimeout(idleTimer.current);
     };
   }, [startAutoScroll, stopAutoScroll]);
-
-  const categories = [
-    { id: 'all', name: 'Totes les Categories' },
-    ...categoriasWithTeams.map((cat) => ({
-      id: cat.id,
-      name: cat.nombre,
-    })),
-  ];
 
   const filteredTeams = useMemo(() => {
     const teams =
