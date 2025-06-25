@@ -42,11 +42,15 @@ export default function TeamsSection() {
       </h1>
       <div className="pt-4  ">
         <CategoryFilter categories={categories} active={activeCategory} onChange={setActiveCategory} />
-        <div className="flex flex-wrap gap-6 justify-start">
+        <div className="grid grid-flow-col grid-rows-2 auto-rows-fr gap-8 overflow-x-auto max-w-full py-2"
+          style={{ WebkitOverflowScrolling: 'touch' }}
+        >
           {filteredTeams.map((team, index) => {
-            const borderPrimaryColor = index % 2 === 0 ? 'border-green-400' : 'border-blue-400';
-            const borderSecondaryColor = index % 2 === 0 ? 'border-blue-400' : 'border-green-400';
-            const textColor = index % 2 === 0 ? 'text-blue-400' : 'text-green-400';
+            const isGreenBlock = Math.floor((index + 1) / 2) % 2 === 0;
+
+            const borderPrimaryColor = isGreenBlock ? 'border-green-400' : 'border-blue-400';
+            const borderSecondaryColor = isGreenBlock ? 'border-blue-400' : 'border-green-400';
+            const textColor = isGreenBlock ? 'text-green-400' : 'text-blue-400';
             return (
               <TeamCard key={team.id} team={team} borderPrimaryColor={borderPrimaryColor} borderSecondaryColor={borderSecondaryColor} textColor={textColor} />
             );
