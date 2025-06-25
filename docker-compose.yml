@@ -10,3 +10,5 @@ services:
     ports:
       - "3000:3000"
     entrypoint: ["tail", "-f", "/dev/null"]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
