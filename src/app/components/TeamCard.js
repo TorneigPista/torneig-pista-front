@@ -14,15 +14,25 @@ export function TeamCard({ team, borderPrimaryColor = 'border-green-400', border
         style={{ backgroundColor: '#191B24' }}
       >
         <div className={`w-24 h-24 rounded-full border-4 ${borderSecondaryColor} overflow-hidden`}>
-          <Image
-            unoptimized
-            aria-hidden
-            src={team.imagen?.url ?? '/images/default-team-shield.svg'}
-            alt={team.nombre}
-            width={200}
-            height={200}
-            className="object-cover w-full h-full"
-          />
+          {team.imagen?.url ? (
+            <Image unoptimized
+              aria-hidden
+              src={team.imagen.url}
+              alt={team.nombre}
+              width={200}
+              height={200}
+              className="object-cover w-full h-full"
+            />
+          ) : (
+            <Image
+              aria-hidden
+              src="/images/default-team-shield.svg"
+              alt={team.nombre}
+              width={200}
+              height={200}
+              className="object-cover w-full h-full"
+            />
+          )}
         </div>
         <h3 className="text-white mt-3 font-semibold line-clamp-2"> {team.nombre}</h3>
         {team.captain && (
