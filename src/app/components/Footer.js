@@ -1,5 +1,5 @@
 import { BiLogoInstagramAlt } from "react-icons/bi";
-import { FaTiktok, FaFacebookSquare} from "react-icons/fa";
+import { FaTiktok, FaFacebookSquare } from "react-icons/fa";
 export default function Footer() {
   return (
     <footer className="text-white  px-6 py-3 flex justify-between items-center border-t border-green-400">
@@ -12,7 +12,11 @@ export default function Footer() {
         <FaTiktok />
         <FaFacebookSquare />
       </div>
-      <div className="text-xs text-right">© 2025 MovistarPlus</div>
-    </footer>
+      <div className="text-xs text-right">
+        <p>© 2025 Pol Dotras Roca</p>
+        <p>amb la colaboració de Mario Sanchez</p>
+        <p>i el suport de <a href="https://www.instagram.com/torneigestiulapista/" className="text-cyan-400 hover:underline">@torneigestiulapista</a></p>
+      </div>
+    </footer >
   );
 }
