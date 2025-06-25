@@ -7,8 +7,8 @@ export default function Home() {
   return (
    <>
     <Navbar/>
-    <div className="body-main">
-      <main className="body-container">
+    <div className="body-main ">
+      <main className="body-container p-4 sm:p-0">
         <HeroSection/>
         <TeamsSection/>
         <CalendarSection/>
