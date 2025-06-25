@@ -8,7 +8,10 @@
 	"workspaceFolder": "/app",
 	"customizations": {
 		"vscode": {
-			"extensions": [],
+			"extensions": [
+				"mhutchie.git-graph",
+				"eamodio.gitlens"
+			],
 			"settings": {
 				"launch": {
 					"version": "0.2.0",
