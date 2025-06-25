@@ -3,8 +3,8 @@ export const TeamDetailsCard = () => {
     <div className="border border-cyan-500 rounded-md p-9 w-full max-w-md bg-black/20 text-white">
       <div className="flex items-center gap-4">
         <img
-          src="https://randomuser.me/api/portraits/women/1.jpg"
-          alt="Capitana"
+          src="https://randomuser.me/api/portraits/men/10.jpg"
+          alt="Capitan"
           className="w-16 h-16 rounded-full border-2 border-cyan-400"
         />
         <div>
@@ -14,18 +14,18 @@ export const TeamDetailsCard = () => {
       </div>
       <div className="mt-4 text-sm space-y-1 text-white">
         <div className="flex justify-between text-gray-400">
-            <span>Capitana:</span>
-            <span className="text-white">Sofía M.</span>
+          <span>Capitan:</span>
+          <span className="text-white">Juan Pérez</span>
         </div>
         <div className="flex justify-between text-gray-400">
-            <span>Fundado:</span>
-            <span className="text-white">2023</span>
+          <span>Fundado:</span>
+          <span className="text-white">2023</span>
         </div>
         <div className="flex justify-between text-gray-400">
-            <span>Jugadores:</span>
-            <span className="text-white">15</span>
+          <span>Jugadores:</span>
+          <span className="text-white">15</span>
         </div>
-			</div>
+      </div>
 
     </div>
   );

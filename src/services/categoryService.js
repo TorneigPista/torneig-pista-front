@@ -26,3 +26,8 @@ export async function getFields(categoryId) {
   const fields = await apiGet('/campos');
   return fields;
 }
+
+export async function getTeamDetails(teamId) {
+  const team = await apiGet(`/equipos/${teamId}`);
+  return team;
+}
