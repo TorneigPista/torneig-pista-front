@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { CategoryFilter } from '@/app/components/CategoryFilter';
 import { TeamCard } from '@/app/components/TeamCard';
 import { getCategoriesWithTeams } from '@/services/categoryService';
@@ -74,11 +74,16 @@ export default function TeamsSection() {
     })),
   ];
 
-  const filteredTeams =
-    activeCategory === 'all'
-      ? categoriasWithTeams.flatMap((cat) => cat.equipos)
-      : categoriasWithTeams
-        .find((cat) => cat.id === activeCategory)?.equipos ?? [];
+  const filteredTeams = useMemo(() => {
+    const teams =
+      activeCategory === 'all'
+        ? categoriasWithTeams.flatMap(cat => cat.equipos ?? [])
+        : categoriasWithTeams.find(cat => cat.id === activeCategory)?.equipos ?? [];
+
+    return teams.toSorted(
+      (a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' })
+    );
+  }, [activeCategory, categoriasWithTeams]);
 
   const useColumns = filteredTeams.length > 18;
 
