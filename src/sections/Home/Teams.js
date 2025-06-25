@@ -101,10 +101,12 @@ export default function TeamsSection() {
           ref={scrollRef}
           className={
             useColumns
-              ? "grid grid-flow-col grid-rows-3 auto-rows-fr gap-8 overflow-x-auto max-w-full py-2"
+              ? "grid grid-flow-col grid-rows-3 auto-rows-fr gap-8 overflow-x-auto max-w-full py-2 scroller"
               : "flex flex-row flex-wrap gap-8 py-2"
           }
           style={useColumns ? { WebkitOverflowScrolling: 'touch' } : {}}
+          onMouseEnter={stopAutoScroll}
+          onMouseLeave={startAutoScroll}
         >
           {filteredTeams.map((team, index) => {
             const isGreenBlock = index % 2 === 0

@@ -39,3 +39,25 @@ body {
   max-width: 70em; /* opcional, si quieres limitar */
   margin: 1em;
 }
+
+/* Estilo por defecto (WebKit, Chromium, Edge) */
+.scroller::-webkit-scrollbar {
+  height: 6px;              /* grosor horizontal */
+}
+.scroller::-webkit-scrollbar-track {
+  background: #1f2937;      /* track = gris oscuro */
+  border-radius: 4px;
+}
+.scroller::-webkit-scrollbar-thumb {
+  background: #22c55e;      /* thumb = verde-400 */
+  border-radius: 4px;
+}
+.scroller::-webkit-scrollbar-thumb:hover {
+  background: #4ade80;      /* un poco más claro al hover */
+}
+
+/* Firefox */
+.scroller {
+  scrollbar-width: thin;                /* thin / auto / none */
+  scrollbar-color: #22c55e #1f2937;     /* thumb track */
+}
