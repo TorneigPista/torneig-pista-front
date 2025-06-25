@@ -1,42 +1,81 @@
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CategoryFilter } from "@/app/components/CategoryFilter";
-import TableHeader from '@/app/components/TableHeader';
 import DynamicTable from '@/app/components/DynamicTable';
 import Image from 'next/image';
+import { getCategories, getAllNextMatches, getNextMatchesByCategory, getFields } from '@/services/categoryService';
+import { formatDate } from '@/lib/formatDate';
 
 export default function CalendarSection() {
-  const categories = ['Todas', 'Cat. A', 'Cat. B', 'Juvenil'];
-  const [selectedCategory, setSelectedCategory] = useState('Todas');
-  const matches = [
-    {
-      date: '22 Jun',
-      time: '18:00',
-      teamA: 'Futbolines',
-      teamAImg: '/futbolines.png',
-      teamB: 'TechStars',
-      teamBImg: '/techstars.png',
-      field: 'Campo 1',
-      category: 'Cat. A',
-    },
-    {
-      date: '23 Jun',
-      time: '20:00',
-      teamA: 'Neon United',
-      teamAImg: '/neon.png',
-      teamB: 'Quantum FC',
-      teamBImg: '/quantum.png',
-      field: 'Campo 2',
-      category: 'Cat. B',
-    },
-  ];
-  
-  const filteredMatches =
-    selectedCategory === 'Todas'
-      ? matches
-      : matches.filter((m) => m.category === selectedCategory);
+  const headersBaicos = ['Fecha', 'Hora', 'Equipo A', 'VS', 'Equipo B', 'Ubicació'];
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [categories, setCategories] = useState([]);
+  const [matches, setMatches] = useState([]);
+  const [fields, setFields] = useState([]);
+  const [headers, setHeaders] = useState([...headersBaicos, 'Categoria']);
 
-  const headers = ['Fecha', 'Hora', 'Equipo A', 'VS', 'Equipo B', 'Cancha'];
+  useEffect(() => {
+    (async () => {
+      try {
+        const allCategories = await getCategories();
+        setCategories([
+          { id: 'all', name: 'Todas' },
+          ...allCategories.map((cat) => ({
+            id: cat.id,
+            name: cat.nombre,
+          })),
+        ]);
+      }
+      catch (err) {
+        console.error('Error al cargar categorías:', err);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const matches = await getAllNextMatches();
+        setMatches(matches);
+      }
+      catch (err) {
+        console.error('Error al cargar partidos:', err);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const fields = await getFields();
+        setFields(fields);
+      }
+      catch (err) {
+        console.error('Error al cargar campos:', err);
+      }
+    })();
+  }, []);
+
+  const handleCategoryChange = async (categoryId) => {
+    try {
+      if (categoryId === selectedCategory) return; // Evita recargar si la categoría ya está seleccionada
+      setSelectedCategory(categoryId);
+
+      let matches;
+
+      if (categoryId === 'all') {
+        setHeaders([...headersBaicos, 'Categoria']);
+        matches = await getAllNextMatches();
+      } else {
+        setHeaders(headersBaicos);
+        matches = await getNextMatchesByCategory(categoryId);
+      }
+      setMatches(matches);
+    } catch (err) {
+      console.error('Error al cargar partidos por categoría:', err);
+    }
+  };
+
   return (
     <section id='calendari' className="text-white mt-16">
       <div className='flex justify-between'>
@@ -44,40 +83,43 @@ export default function CalendarSection() {
         <CategoryFilter
           categories={categories}
           active={selectedCategory}
-          onChange={setSelectedCategory}
+          onChange={handleCategoryChange}
         />
       </div>
-       <DynamicTable headers={headers}>
-        {filteredMatches.map((match,i) =>(
+      <DynamicTable headers={headers}>
+        {matches.map((match, i) => (
           <tr key={i} className='border-t border-green-300 text-sm'>
-            <td className="px-4 py-2">{match.date}</td>
-            <td className="px-4 py-2">{match.time}</td>
+            <td className="px-4 py-2">{formatDate(match.fecha_programada)}</td>
+            <td className="px-4 py-2">{formatDate(match.fecha_programada, 'HH:mm')}</td>
             <td className="px-4 py-2 flex items-center justify-center gap-2">
-            <Image 
-              aria-hidden 
-              source={{uri: `${match.teamAImg}`}}
-              alt={`${match.teamA} logo`}
-              src='/images/hero-image.svg'
-              width={200} 
-              height={200} 
-              className="w-6 h-6 rounded-full"
-            />
-            {match.teamA}
+              <Image
+                aria-hidden
+                src={match.equipo_local.imagen?.url ?? '/images/default-team-shield.svg'}
+                alt={`${match.equipo_local.nombre} logo`}
+                width={200}
+                height={200}
+                className="w-6 h-6 rounded-full"
+                unoptimized={!!match.equipo_local.imagen?.url}
+              />
+              {match.equipo_local.nombre}
             </td>
             <td className="px-4 py-2 text-green-400 font-bold text-sm text-center">VS</td>
             <td className="px-4 py-2 flex items-center justify-center gap-2">
-              <Image 
-                aria-hidden 
-                src='/images/hero-image.svg'
-                source={{uri: `${match.teamBImg}`}}
-                alt={`${match.teamA} logo`}
-                width={200} 
-                height={200} 
+              <Image
+                aria-hidden
+                src={match.equipo_visitante.imagen?.url ?? '/images/default-team-shield.svg'}
+                alt={`${match.equipo_visitante.nombre} logo`}
+                width={200}
+                height={200}
                 className="w-6 h-6 rounded-full"
+                unoptimized={!!match.equipo_local.imagen?.url}
               />
-              {match.teamB}
+              {match.equipo_visitante.nombre}
             </td>
-            <td className="px-4 py-2">{match.field}</td>
+            <td className="px-4 py-2">{fields.find(field => field.id === match.campo_id)?.nombre || 'Desconegut'}</td>
+            {selectedCategory === 'all' ? (
+              <td className="px-4 py-2">{categories.find(cat => cat.id === match.categoria_id)?.name || 'Desconegut'}</td>)
+              : null}
           </tr>
         ))}
       </DynamicTable>
