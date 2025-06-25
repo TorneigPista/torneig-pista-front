@@ -80,6 +80,8 @@ export default function TeamsSection() {
       : categoriasWithTeams
         .find((cat) => cat.id === activeCategory)?.equipos ?? [];
 
+  const useColumns = filteredTeams.length > 18;
+
   return (
     <section id="equip" className="mt-16 text-start">
       <h1 className="text-4xl text-green-400">
@@ -97,11 +99,15 @@ export default function TeamsSection() {
 
         <div
           ref={scrollRef}
-          className="grid grid-flow-col grid-rows-2 auto-rows-fr gap-8 overflow-x-auto max-w-full py-2"
-          style={{ WebkitOverflowScrolling: 'touch' }}
+          className={
+            useColumns
+              ? "grid grid-flow-col grid-rows-3 auto-rows-fr gap-8 overflow-x-auto max-w-full py-2"
+              : "flex flex-row flex-wrap gap-8 py-2"
+          }
+          style={useColumns ? { WebkitOverflowScrolling: 'touch' } : {}}
         >
           {filteredTeams.map((team, index) => {
-            const isGreenBlock = Math.floor((index + 1) / 2) % 2 === 0;
+            const isGreenBlock = index % 2 === 0
             const borderPrimaryColor = isGreenBlock ? 'border-green-400' : 'border-blue-400';
             const borderSecondaryColor = isGreenBlock ? 'border-blue-400' : 'border-green-400';
             const textColor = isGreenBlock ? 'text-green-400' : 'text-blue-400';
