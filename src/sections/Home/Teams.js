@@ -90,7 +90,7 @@ export default function TeamsSection() {
   const useColumns = filteredTeams.length > 18;
 
   return (
-    <section id="equip" className="mt-16 text-start">
+    <section id="equips" className="mt-16 text-start">
       <h1 className="text-4xl text-green-400">
         Equips Participants
       </h1>
