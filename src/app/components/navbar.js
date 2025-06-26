@@ -1,11 +1,16 @@
 import Link from "next/link";
-import { IoIosFootball } from "react-icons/io";
+import Image from "next/image";
 
 export default function Navbar() {
-    return ( 
+  return (
     <header className=" bg-gradient-to-r from-cyan-500 to-green-400 text-whitepx-6 px-4 py-2 flex items-center justify-between">
       <Link href="/" className="flex items-center space-x-2 cursor-pointer">
-        <IoIosFootball className="text-black text-3xl" />
+        <Image
+          src="/images/logo-torneig-la-pista.png"
+          alt="Logo Torneig la Pista"
+          width={40}
+          height={40}
+        />
         <div className="text-start">
           <h1 className="text-lg font-semibold leading-none">Torneig la Pista</h1>
           <p className="text-xs text-cyan-100">Pàgina no oficial</p>
@@ -17,5 +22,5 @@ export default function Navbar() {
         <Link href="/#classificacio" className="hover:underline">Classificació</Link>
       </nav>
     </header>
-    )
+  )
 }
