@@ -1,4 +1,7 @@
-const BASE_URL = 'http://host.docker.internal/api/v1';
+import config from "@/config/global";
+
+const BASE_URL = config.apiUrl;
+
 export async function apiGet(endpoint) {
   try {
     const res = await fetch(`${BASE_URL}${endpoint}`, {
