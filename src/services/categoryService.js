@@ -22,6 +22,11 @@ export async function getNextMatchesByCategory(categoryId) {
   return matches;
 }
 
+export async function getNextMatchesByTeam(teamId) {
+  const matches = await apiGet(`/proximos-partidos-equipo/${teamId}`);
+  return matches;
+}
+
 export async function getFields(categoryId) {
   const fields = await apiGet('/campos');
   return fields;
