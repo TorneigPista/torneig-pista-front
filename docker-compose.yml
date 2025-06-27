@@ -1,8 +1,8 @@
-version: "3.8"
-
 services:
     next-frontend:
-        image: node:24
+        build:
+            context: .
+            dockerfile: Dockerfile
         container_name: node-dev
         working_dir: /app
         volumes:
@@ -12,9 +12,9 @@ services:
         entrypoint: ["tail", "-f", "/dev/null"]
         extra_hosts:
             - "host.docker.internal:host-gateway"
+            - "api.torneig.local:host-gateway"
         networks:
             - proxy
-
 networks:
     proxy:
         external: true
