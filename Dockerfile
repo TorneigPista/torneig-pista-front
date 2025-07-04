@@ -2,7 +2,11 @@ FROM node:24
 
 WORKDIR /app
 
-COPY ./rootCA.pem /usr/local/share/ca-certificates/rootCA.crt
-RUN update-ca-certificates
+COPY . /app/
 
-ENV NODE_EXTRA_CA_CERTS=/usr/local/share/ca-certificates/rootCA.crt
+RUN npm install
+RUN npm run build
+
+EXPOSE 3000
+
+CMD ["npm", "run", "start"]
